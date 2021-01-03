@@ -1,0 +1,75 @@
+---
+title: "attention2"
+output: html_document
+---
+
+### $a$
+
+### $c$
+
+### $s$
+
+### $\vec{h}$
+
+### $\overleftarrow{h}$
+
+### $\vec{h_t}$
+
+### $\overleftarrow{h_t}$
+
+### $h_t$
+
+### $s_{t-1}$
+
+### $a_t$
+
+### $c_t$
+
+### $y_{t-1}$
+
+### $s_t$
+
+### $y_t$
+
+### $\because\;\mathrm{\vec{a}\;and\;\vec{b}\;are\;same\;direction,\;\theta\;=0}$
+
+### $\therefore\;\mathrm{\cos\theta=1,\;score\;will\;be\;more\;large}$
+
+### $\mathrm{linear\;transform}$
+
+### $c_t=\frac{1}{S_x}\sum_{s=1}^{S_x}h_sa_t$
+
+### $Bahdanau\;et\;al.2015$
+
+### $\bar{h}_s$
+
+### $\widetilde{h}_t$
+
+### $p_t$
+
+### $p_t=t$
+
+### $D=1$
+
+### $[p_t-1,p_t+1]$
+
+### $S:source\;sentence\;length$
+
+### $v_p,W_p:\mathrm{weight\;matrix}$
+
+### $s:\mathrm{integer\;within\;the\;window\;centered\;at}\;p_t$
+
+### $\sigma=\frac{D}{2}$
+
+### $D=2\Rightarrow \sigma=1$
+
+$0$
+
+$1$
+
+### $\widetilde{h}_{t-1}$
+
+
+
+
+

@@ -1,0 +1,171 @@
+---
+title: "notation"
+author: "kang wen wei"
+date: "2018/7/30"
+output: html_document
+---
+
+## $h_t=x_tU+h_{t-1}W$
+
+## $h_{t+1}=x_{t+1}U+h_{t}W$
+
+## $o_t=h_tV$
+
+## $L=\frac{1}{2}(o_t-y)^2$
+
+$$
+\delta_{h_t}=\frac{\partial{L}}{\partial{h_t}}=
+\begin{equation}
+\left\{
+\begin{array}{}
+\begin{aligned}
+&\frac{\partial{L}}{\partial{o_t}}\frac{\partial{o_t}}{\partial{h_t}}=(o_t-y)V &\text{if}\;t=t\\
+&\frac{\partial{L}}{\partial{o_{t+1}}}\frac{\partial{o_{t+1}}}{\partial{h_{t+1}}}\frac{\partial{h_{t+1}}}{\partial{h_t}}=(o_{t+1}-y)VW &\text{otherwise}
+\end{aligned}
+\end{array}
+\right.
+\end{equation}
+$$
+
+$$
+\begin{align}
+&W:=W-\eta\frac{\partial{L}}{\partial{W}}\;,\;\frac{\partial{L}}{\partial{W}}=\frac{\partial{L}}{\partial{h_t}}\frac{\partial{h_t}}{\partial{W}}=\delta_{h_t}h_{t-1}\\
+&U:=U-\eta\frac{\partial{L}}{\partial{U}}\;,\;\frac{\partial{L}}{\partial{U}}=\frac{\partial{L}}{\partial{h_t}}\frac{\partial{h_t}}{\partial{U}}=\delta_{h_t}x_t\\
+&V:=V-\eta\frac{\partial{L}}{\partial{V}}\;,\;\frac{\partial{L}}{\partial{V}}=\frac{\partial{L}}{\partial{o_t}}\frac{\partial{o_t}}{\partial{V}}=(o_t-y)h_t
+\end{align}
+$$
+
+$$
+\delta_{h_2}=\frac{\partial{L}}{\partial{h_2}}=
+\begin{equation}
+\left\{
+\begin{array}{}
+\begin{aligned}
+&\frac{\partial{L}}{\partial{o_2}}\frac{\partial{o_2}}{\partial{h_t}}=(o_2-y)V &\text{if}\;t=2\\
+&\frac{\partial{L}}{\partial{o_{t+1}}}\frac{\partial{o_{t+1}}}{\partial{h_{t+1}}}\frac{\partial{h_{t+1}}}{\partial{h_t}}\dots\frac{h_4}{h_3}\frac{h_3}{h_2}=(o_{t+1}-y)VWW\dots WW &\text{otherwise}
+\end{aligned}
+\end{array}
+\right.
+\end{equation}
+$$
+
+
+
+## $z^t=g(W_zx^t+R_zy^{t-1}+b_z)=g(z_a^t)$
+
+## $i^t=\sigma(W_ix^t+R_iy^{t-1}+b_i)=\sigma(i_a^t)$
+
+## $f^t=\sigma(W_fx^t+R_fy^{t-1}+b_f)=\sigma(f_a^t)$
+
+## $c^t=i^tz^t+f^tc^{t-1}$
+
+## $o^t=\sigma(W_ox^t+R_oy^{t-1}+b_o)=\sigma(o_a^t)$
+
+## $y^t=o^th(c^t)=o^tc_h^t$
+
+## $\delta_{o_a}^t=\frac{\partial{L}}{\partial{o_a^t}}=\frac{\partial{L}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{o^t}}\frac{\partial{o^t}}{\partial{o_a^t}}=\delta_y^t\cdot c_h^t\cdot \sigma'(o_a^t)$
+
+## $\delta_{f_a}^t=\frac{\partial{L}}{\partial{f_a^t}}=\frac{\partial{L}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{c^t}}\frac{\partial{c^t}}{\partial{f^t}}\frac{\partial{f^t}}{\partial{f_a^t}}=\delta_c^t\cdot c^{t-1}\cdot \sigma'(f_a^t)$
+
+## $\delta_{i_a}^t=\frac{\partial{L}}{\partial{i_a^t}}=\frac{\partial{L}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{c^t}}\frac{\partial{c^t}}{\partial{i^t}}\frac{\partial{i^t}}{\partial{i_a^t}}=\delta_c^t\cdot z^t\cdot\sigma'(i_a^t)$
+
+$$
+\begin{align}
+\delta_c^t=\frac{\partial{L}}{\partial{c^t}}
+&=
+(\frac{\partial{L}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{c_h^t}}\frac{\partial{c_h^t}}{\partial{c^t}})+(\frac{\partial{L}}{\partial{y^{t+1}}}\frac{\partial{y^{t+1}}}{\partial{c^{t+1}}}\frac{\partial{c^{t+1}}}{\partial{c^t}}) \\
+&=
+\delta_y^t\cdot o^t\cdot h'(c^t)+\delta_c^{t+1}\cdot f^{t+1}
+\end{align}
+$$
+
+## $\delta_{z_a}^t=\frac{\partial{L}}{\partial{z_a^t}}=\frac{\partial{L}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{c^t}}\frac{\partial{c^t}}{\partial{z^t}}\frac{\partial{z^t}}{\partial{z_a^t}}=\delta_c^t\cdot i^t\cdot g'(z_a^t)$
+
+$$
+\begin{align}
+\delta_y^t=\frac{\partial{L}}{\partial{y^t}}
+&=
+\frac{\partial{L}}{\partial{z^{t+1}}}\frac{\partial{z^{t+1}}}{\partial{z_a^{t+1}}}\frac{\partial{z_a^{t+1}}}{\partial{y^t}} +
+\frac{\partial{L}}{\partial{i^{t+1}}}\frac{\partial{i^{t+1}}}{\partial{i_a^{t+1}}}\frac{\partial{i_a^{t+1}}}{\partial{y^t}} + 
+\frac{\partial{L}}{\partial{f^{t+1}}}\frac{\partial{f^{t+1}}}{\partial{f_a^{t+1}}}\frac{\partial{f_a^{t+1}}}{\partial{y^t}} + 
+\frac{\partial{L}}{\partial{o^{t+1}}}\frac{\partial{o^{t+1}}}{\partial{o_a^{t+1}}}\frac{\partial{o_a^{t+1}}}{\partial{y^t}} \\
+&=
+\delta_{z_a}^{t+1}\cdot R_z + \delta_{i_a}^{t+1}\cdot R_i + \delta_{f_a}^{t+1}\cdot R_f + \delta_{o_a}^{t+1}\cdot R_o \\
+&=
+\left[
+\begin{matrix}
+    \delta_{z_a}^{t+1} \\
+    \delta_{i_a}^{t+1} \\
+    \delta_{f_a}^{t+1} \\
+    \delta_{o_a}^{t+1}
+\end{matrix}
+\right]^T
+\left[
+\begin{matrix}
+    R_z \\ 
+    R_i \\ 
+    R_f \\
+    R_o
+\end{matrix}
+\right]
+\end{align}
+$$
+
+$$
+\begin{align}
+\frac{\partial{L}}{\partial{W_o}}=
+\sum_{T＝ \{t,t+1\}}\frac{\partial{L^T}}{\partial{W_o}}
+&=
+\frac{\partial{L^t}}{\partial{W_o}}+\frac{\partial{L^{t+1}}}{\partial{W_o}}\\ 
+&=
+\frac{\partial{L^t}}{\partial{y^t}}\frac{\partial{y^t}}{\partial{o^t}}\frac{\partial{o^t}}{\partial{o_a^t}}\frac{\partial{o_a^t}}{\partial{W_o}} +
+\frac{\partial{L^{t+1}}}{\partial{y^{t+1}}}\frac{\partial{y^{t+1}}}{\partial{o^{t+1}}}\frac{\partial{o^{t+1}}}{\partial{o_a^{t+1}}}\frac{\partial{o_a^{t+1}}}{\partial{W_o}} \\
+&=
+\delta_{o_a}^t\cdot x^t + \delta_{o_a}^{t+1}\cdot x^{t+1}
+\end{align}
+$$
+
+## $\frac{\partial{L}}{\partial{W_z}} = \delta_{z_a}^t\cdot x^t + \delta_{z_a}^{t+1}\cdot x^{t+1}$
+
+## $\frac{\partial{L}}{\partial{W_i}} = \delta_{i_a}^t\cdot x^t + \delta_{i_a}^{t+1}\cdot x^{t+1}$
+ 
+## $\frac{\partial{L}}{\partial{W_f}} = \delta_{f_a}^t\cdot x^t + \delta_{f_a}^{t+1}\cdot x^{t+1}$
+
+$$
+\begin{align}
+\frac{\partial{L}}{\partial{R_o}}=
+\sum_{T=\{t+1\}}\frac{\partial{L^T}}{\partial{R_o}} 
+&=
+\frac{\partial{L^{t+1}}}{\partial{R_o}} \\ 
+&=
+\frac{\partial{L^{t+1}}}{\partial{y^{t+1}}}\frac{\partial{y^{t+1}}}{\partial{o^{t+1}}}\frac{\partial{o^{t+1}}}{\partial{o_a^{t+1}}}\frac{\partial{o_a^{t+1}}}{\partial{R_o}} \\
+&=
+\delta_{o_a}^{t+1}\cdot y^t
+\end{align}
+$$
+
+## $\frac{\partial{L}}{\partial{R_z}}=\delta_{z_a}^{t+1}\cdot y^t$
+
+## $\frac{\partial{L}}{\partial{R_i}}=\delta_{i_a}^{t+1}\cdot y^t$
+
+## $\frac{\partial{L}}{\partial{R_f}}=\delta_{f_a}^{t+1}\cdot y^t$
+
+## $W:=W-\eta\frac{\partial{L}}{\partial{W}}, W=\{W_o,W_z,W_i,W_f\}$
+
+## $R:=R-\eta\frac{\partial{L}}{\partial{R}}, R=\{R_o,R_z,R_i,R_f\}$
+
+## $W$
+
+## $t$
+
+## $R$
+
+## $t+1$
+
+## $\frac{\partial{L}}{\partial{W}}=\frac{\partial{L}}{\partial{y}}\sigma'(Z)W\sigma'(Z)W...\sigma'(Z)x$
+
+## $\frac{\partial{L}}{\partial{W}}=\frac{\partial{L}}{\partial{o_{t+1}}}\frac{\partial{o_{t+1}}}{\partial{h_{t+1}}}\frac{\partial{h_{t+1}}}{\partial{h_t}}\dots\frac{\partial{h_4}}{\partial{h_3}}\frac{\partial{h_3}}{\partial{h_2}}\frac{\partial{h_2}}{\partial{W}}=(o_{t+1}-y)VW\dots WWh_1$
+
+## $\frac{\partial{L}}{\partial{W}} = \delta^t\cdot x^t + \delta^{t+1}\cdot x^{t+1}+\delta^{t+2}\cdot x^{t+2}+ \delta^{t+3}\cdot x^{t+3}+....$
+
+

@@ -1,0 +1,340 @@
+---
+title: "notation"
+author: "kang wen wei"
+date: "2018/3/14"
+output: html_document
+---
+
+### $w^l_{ij}$
+
+### $a^l_j$
+
+### $Layer\;l$
+
+### $Layer\;l-1$
+
+### $z^l_{i}$
+
+### $z^l_{1}$
+
+### $z^l_{2}$
+
+### $Layer\;l-1\;to\;Layer\;l$
+
+### $Neuron\;j$
+
+### $Neuron\;i$
+
+### $\theta = \{(w^l_{11},...,w^l_{1j},b^l_1),(w^l_{21},...,w^l_{2j},b^l_2),...,(w^l_{i1},...,w^l_{ij},b^l_i)\}$
+
+$$
+\left[
+\begin{matrix}
+    w^l_{11} & w^l_{12}  & \cdots & w^l_{1j} \\
+    w^l_{21} & w^l_{22}  & \cdots & w^l_{2j} \\
+    \vdots & \vdots & \ddots \; \\
+    w^l_{i1} & w^l_{i2} & \cdots & w^l_{ij}
+\end{matrix} 
+\right]
+\left[
+\begin{matrix}
+    a^{l-1}_1 \\
+    a^{l-1}_2 \\
+    \vdots \\ 
+    a^{l-1}_j
+\end{matrix} 
+\right] + 
+\left[
+\begin{matrix}
+    b^l_1 \\
+    b^l_2 \\
+    \vdots \\ 
+    b^l_i
+\end{matrix} 
+\right] = 
+\left[
+\begin{matrix}
+    z^l_1 \\
+    z^l_2 \\ 
+    \vdots \\ 
+    z^l_i
+\end{matrix}
+\right]
+\\
+\sigma{(\left[
+\begin{matrix}
+    z^l_1 \\
+    z^l_2 \\ 
+    \vdots \\ 
+    z^l_i
+\end{matrix}
+\right])} = 
+\left[
+\begin{matrix}
+    a^l_1 \\
+    a^l_2 \\
+    \vdots \\ 
+    a^l_i
+\end{matrix} 
+\right]
+$$
+
+### $\{(x^1,\hat{y^1})...(x^r,\hat{y^r})...(x^R,\hat{y^R})\}$
+
+### $C(\theta)=\frac{1}{R}||\sum({f(x^r;\theta)}-\hat{y^r})||$
+
+### $C(\theta)$
+
+### $\theta$
+
+### $\theta_1$
+
+### $\theta_2$
+
+### $\theta_2 := \theta_1-\eta{\frac{\partial{C(\theta_1)}}{\partial{\theta}}}$
+
+```{r}
+curve(2*x,0,5)
+```
+
+### $y=f(x)\;,\;z = g(y)$
+
+### $\bigtriangleup{x}\rightarrow\bigtriangleup{y}\rightarrow\bigtriangleup{z}$
+
+### $\frac{\partial{z}}{\partial{x}} = \frac{\partial{z}}{\partial{y}}\frac{\partial{y}}{\partial{x}}$
+
+### $\frac{\partial{C^r}}{\partial{w^l_{ij}}}$
+
+### $\bigtriangleup{w^l_{ij}}\rightarrow\bigtriangleup{z^l_i}\rightarrow\bigtriangleup{a^l_i}\rightarrow\bigtriangleup{C^r}$
+
+### $\frac{\partial{C^r}}{\partial{w^l_{ij}}}=\frac{\partial{z^l_i}}{\partial{w^l_{ij}}}\frac{\partial{C^r}}{\partial{z^l_i}}$
+
+### $\frac{\partial{z^l_i}}{\partial{w^l_{ij}}}$
+
+### $z^l_i=\sum_jw^l_{ij}a^{l-1}_j+b^l_i$
+ 
+### $\frac{\partial{z^l_i}}{\partial{w^l_{ij}}} = a^{l-1}_j$
+
+### $z^1_i=\sum_jw^1_{ij}x^{r}_j+b^1_i$
+
+### $\frac{\partial{z^1_i}}{\partial{w^1_{ij}}} = x^r_j$
+
+### $\frac{\partial{C^r}}{\partial{z^l_i}}$
+
+### $\delta^l_i$
+
+### $\delta^L$
+
+### $\delta^{l+1}$
+
+### $\delta^l$
+
+### $\delta^L_n$
+
+### $\bigtriangleup{z^L_n}\rightarrow\bigtriangleup{a^L_n}=\bigtriangleup{y^r_n}\rightarrow\bigtriangleup{C^r}$
+
+$$
+\begin{align}
+\delta^L_n = \frac{\partial{C^r}}{\partial{z^L_n}}&=\frac{\partial{y^L_n}}{\partial{z^L_n}}\frac{\partial{C^r}}{\partial{y^L_n}}\\
+&= \sigma'{(z^L_n)}\frac{\partial{C^r}}{\partial{y^L_n}}
+\end{align}\\
+$$
+
+### $\sigma'{(z^L_n)}$
+
+$$
+\begin{align}
+\delta^L &= \sigma'{(z^L)}\circ\bigtriangledown{C^r(y^r)} \\
+&=
+\left[
+\begin{matrix}
+    \sigma'(z^L_1) \\
+    \sigma'(z^L_2) \\
+    \vdots \\
+    \sigma'(z^L_n)
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+    \partial{C^r}/\partial{y^r_1} \\
+    \partial{C^r}/\partial{y^r_2} \\
+    \vdots \\
+    \partial{C^r}/\partial{y^r_n}
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+    \delta^L_1 \\
+    \delta^L_2 \\
+    \vdots \\
+    \delta^L_n
+\end{matrix}
+\right]
+\end{align}
+$$
+
+### $\sigma{(z^L_n)}$
+
+### $z^L_n$
+
+### $\delta^l$
+
+### $\delta^{l+1}$
+
+### $\delta^L_i = \frac{\partial{C^r}}{\partial{z^l_i}}$
+
+### $\bigtriangleup{z^l_i}\rightarrow\bigtriangleup{a^l_i}$
+
+### $\bigtriangleup{z^{l+1}_1}$
+
+### $\bigtriangleup{z^{l+1}_2}$
+
+### $\bigtriangleup{z^{l+1}_3}$
+
+### $\bigtriangleup{z^{l+1}_k}$
+
+### $\bigtriangleup{C^r}$
+
+### $\vdots$
+
+$$
+\begin{align}
+\delta^l_i=\frac{\partial{C^r}}{\partial{z^l_i}} 
+&=
+\frac{\partial{a^l_i}}{\partial{z^l_i}}
+\sum_k\frac{\partial{z^{l+1}}}{\partial{a^l_i}}\frac{\partial{C^r}}{\partial{z^{l+1}_k}} \\
+&=
+\frac{\partial{a^l_i}}{\partial{z^l_i}}
+\sum_k\frac{\partial{z^{l+1}}}{\partial{a^l_i}}\delta^{l+1}_k \\
+&=
+\sigma'(z^l_i)\sum_kw^{l+1}_{ki}\delta^{l+1}_k
+\end{align}
+$$
+
+### $\delta^{l+1}_k=\frac{\partial{C^r}}{\partial{z^{l+1}_k}}$
+
+### $\frac{\partial{z^{l+1}_k}}{\partial{a^l_i}}=\frac{\sum_iw^{l+1}_{ki}a^l_i+b^{l+1}_k}{\partial{a^l_i}}$
+
+### $\delta^l_i=\frac{\partial{C^r}}{\partial{z^l_i}}=\frac{\partial{a^l_i}}{\partial{z^l_i}}\sum_k\frac{\partial{z^{l+1}_k}}{\partial{a^l_i}}\frac{\partial{C^r}}{\partial{z^{l+1}_k}}$
+
+### $\delta^l_i=\sigma'(z^l_i)\sum_kw^{l+1}_{ki}\delta^{l+1}_k$
+
+### $\delta^{l+1}_1$
+
+### $\delta^{l+1}_2$
+
+### $\delta^{l+1}_3$
+
+### $\delta^{l+1}_k$
+
+### $w^{l+1}_{1i}$
+
+### $w^{l+1}_{2i}$
+
+### $w^{l+1}_{3i}$
+
+### $w^{l+1}_{ki}$
+
+### $i$
+
+### $\sigma'(z^l_i)$
+
+### $Layer\;l+1$
+
+### $\delta^l=\sigma'(z^l)(W^{l+1})^\intercal\delta^{l+1}$
+
+$$
+\left[
+\begin{matrix}
+    \delta^l_1 \\
+    \delta^l_2 \\
+    \delta^l_3 \\
+    \vdots \\ 
+    \delta^l_i
+\end{matrix}
+\right]
+=
+\left[
+\begin{matrix}
+    \sigma'(z^l_1) \\
+    \sigma'(z^l_2) \\
+    \vdots \\
+    \sigma'(z^l_i)
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+    w^{l+1}_{11}\;w^{l+1}_{21}\;w^{l+1}_{31}\;\dots\;w^{l+1}_{k1} \\
+    w^{l+1}_{12}\;w^{l+1}_{22}\;w^{l+1}_{32}\;\dots\;w^{l+1}_{k2} \\
+    w^{l+1}_{13}\;w^{l+1}_{23}\;w^{l+1}_{33}\;\dots\;w^{l+1}_{k3} \\
+    \vdots \\
+    w^{l+1}_{1i}\;w^{l+1}_{2i}\;w^{l+1}_{3i}\;\dots\;w^{l+1}_{ki}
+\end{matrix}
+\right]
+\left[
+\begin{matrix}
+    \delta^{l+1}_1 \\
+    \delta^{l+1}_2 \\
+    \delta^{l+1}_3 \\
+    \vdots \\ 
+    \delta^{l+1}_k
+\end{matrix}
+\right]
+$$
+
+$$
+\left\{
+\begin{matrix}
+a^{l-1}_j&,l>1 \\ 
+x^r_j&,l=1 & 
+\end{matrix}
+\right.
+$$
+
+$$
+\begin{align}
+z^1&=w^1x^r+b^1 \\
+a^1&=\sigma(z^1) \\
+\vdots \\
+z^{l-1}&=w^{l-1}a^{l-2}+b^{l-1} \\
+a^{l-1}&=\sigma(z^{l-1}) 
+\end{align}
+$$
+
+$$
+\begin{align}
+\delta^L&=\sigma'(z^L)\circ\bigtriangledown{C^r(y^r)} \\
+\delta^{L-1}&=\sigma'(z^{L-1})\circ(W^L)^\intercal\delta^L \\
+\vdots \\
+\delta^l&=\sigma'(z^l)\circ(W^{l+1})^\intercal\delta^{l+1} \\
+\vdots \\
+\delta^1&=\sigma'(z^1)\circ(W^2)^\intercal\delta^2
+\end{align}
+$$
+
+### $a^l_i$
+
+### $1$
+
+### $2$
+
+### $3$
+
+### $\sigma'(z^l_3)$
+
+### $\sigma'(z^l_2)$
+
+### $\sigma'(z^l_1)$
+
+### $=$
+
+### $\delta^l_1$
+
+### $\delta^l_2$
+
+### $\delta^l_3$
+
+
+
+

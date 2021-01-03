@@ -1,0 +1,44 @@
+---
+title: "keyphrase"
+output: html_document
+---
+
+
+### $(\mathrm{source,keyphrase})=(x,y)=[(x,y_1),(x,y_2),...,(x,y_m)]$
+
+### $\mathrm{Hidden\;representations: h=[h_1,h_2,...,h_L]}$
+
+### $\mathrm{Encoder\;hidden\;states:e=[e_1,e_2,...,e_L]}$
+
+### $\mathrm{Decoder\;hidden\;states:d=[d_1,d_2,...,d_m]}$
+
+### $s_i^f=f(y_i,s_{i-1}^f)$
+### $s_i^b=f(y_i,s_{i-1}^b)$
+### $s_i=[s_i^f,s_i^b]$
+
+### $a^t$
+
+### $P_{vocab}$
+
+### $W_h,W_s,b_{attn},V_1,V_2,b_1,b_2\;\mathrm{is\;learnable\;parameters}$
+
+### $a^t\in \mathbb{R^{\mathrm{source\;text}}}$
+
+### $P_{vocab}\in \mathbb{R^{\mathrm{vocab\;size}}}$
+
+### $loss=-\frac{1}{T}\sum_{t=0}^TlogP(w_t^*)$
+
+### $V_2\mathrm{\;is\;a\;matrix\;to\;change\;the\;dimension\;to\;vocabulary\;size.}$
+
+### $w_{ch},w_{cs},w_{cy},b_{gen}\mathrm{\;is\;learnable\;paramters},\sigma\;\mathrm{is\;the\;sigmoid\;function.}$
+
+### $a_i^t:\mathrm{attention\;distribution}$
+
+### $c_i^t:\mathrm{coverage\;vector}$
+
+
+
+
+
+
+

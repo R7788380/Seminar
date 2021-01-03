@@ -1,0 +1,103 @@
+---
+title: "Deep learning"
+author: "kang wen wei"
+date: "2018/3/1"
+output: 
+  html_document:
+    code_folding: hide
+---
+# What is the model in Neuron Network? (By a Layer of Neuron)
+
+### 首先要了解Neuron Network的架構，我想要從裡面的element是怎麼組成的開始，那Neuron Network的element就是一層一層的layer構成，而這些layer中可以分成3個部分，第一個是Input layer，那Input layer的Input就是我們訓練時訓練的數據特徵，也就是特徵組成的向量，其實這裡嚴格來講應該不是一個layer，而是一個vector，因為Input就只是好幾個特徵構成的vector而已，可是後面都是layerlayer的，所以之後就固定講Input layer，其實這第一層就只是一個Vector而已，第二個是hidden layers，這hidden layer是由好幾層layer所構成，hidden layer的性質就是上一層的Output不是作為輸出，而是作為下一層的Input，而每一層layer又是由好幾個Neuron構成，所以等一下我會先從一個Neuron的運作方式開始說明，接下來是第三個Output layer，那這個Output layer其實就只是最後一層的layer而已，他的Output會作為真正的Output輸出。
+
+![](layer.png)
+
+## Single Neuron
+
+![](single neuron.png)
+
+#### 一開始從一層layer的一個Neuron開始了解，那這一個Neuron就是一個Function，那Input是一個$N$維實數的vector，從$x_1$到$x_N$，而Output是一個scalar y($f:R^N \rightarrow R$)，先將Input vector${x_1,x_2...x_N}$分別乘上weight然後相加，其實這個步驟就是兩個向量做inner product，之後再加上bias，等一下會解釋說為什麼需要加上bias，接著加上bias之後得到了weighted sum z，接著weighted sum通過Activation function就得到scalar y，接著這個scalar y會透過一個threshold來判斷是不是屬於某一類，那等一下也會一併解釋為何要透過一個Activation function來輸出scalar y。
+
+#### 為什麼要加上bias呢？那這個在網路上有很多說法，那我直接換個角度來切入，加入bias有什麼作用？
+
+```{r}
+sigmoid = function(x,weight = 1) {
+    1 / (1 + exp(weight * (-x)))
+}
+x = seq(-5,5,0.01)
+x2 = c(-0.2,-0.1,0.15,-0.2,0.3)
+x3 = c(-4,-4.1,-4.2,-4.32,-3.72)
+y = rep(0.1,5)
+{plot(x,sigmoid(x),col = "blue")
+points(x,sigmoid(x,weight = 1.5),col = "orange")
+points(x,sigmoid(x,weight = 2),col = "green")
+legend("topleft",legend = c("sigmoid(x)","sigmoid(1.5x)","sigmoid(2.0x)"),
+       col = c("blue","orange","green"),lty = 1)
+points(x2,y,col = "red",cex = 2,pch = 16)
+points(x3,y,col = "brown",cex = 2,pch = 16)}
+```
+
+#### 首先上圖藍線是一個Sigmoid function的曲線，隨著不同的weight而變化的曲線，想要了解Sigmoid Function的性質的話我想直接看這張圖就能夠瞭解了，Sigmoid的Input是任意實數，而Output是一個從接近0到接近1的實數，所以不管我的Input是多少，Sigmoid Function都能將Input map到0,1之間。
+
+#### 接下來，要說明為什麼要增加一個bias，上圖的橘線以及綠線是Sigmoid在不同weight時的曲線，下面有兩類，一類是紅點，另一類是咖啡點，當我今天要通過一個threshold來判斷Input是屬於紅點還是咖啡點時，我必須依照Sigmoid Function的Output來判斷
+####所以，以上圖來說，我希望Sigmoid的曲線能夠越接近紅點或是越接近咖啡點越好，也就是說，曲線能夠越Fit點所構成的邊際越好，但是這樣的話我的Sigmoid的weight就必須越大或越小，也就會增加訓練的複雜度，也就是說，有沒有其他的方式，讓Sigmoid曲線不只依靠weight來Fit數據，是不是還有其他的方式來幫助Sigmoid Function表現的更靈活。
+
+#### 因為weight要變化，代表說Neuron Network要在訓練一次。
+
+```{r}
+{plot(x,sigmoid(x),col = "blue")
+points(x,sigmoid(x+0.5),col = "orange")
+points(x,sigmoid(x+1.0),col = "green")
+legend("topleft",legend = c("sigmoid(x)","sigmoid(x+0.5)","sigmoid(x+1)"),
+       col = c("blue","orange","green"),lty = 1)
+points(x2,y,col = "red",cex = 2,pch = 16)
+points(x3,y,col = "brown",cex = 2,pch = 16)}
+```
+
+#### 這張是我加入bias後的Sigmoid Function，藍線、橘線、綠線分別是x,x+0.5,x+1，這裏x的weight都是1，我只加入了bias而已，Sigmoid就能夠靈活的Fit紅點與咖啡點的分佈，我不用特地去過度訓練Neuron Network，在訓練數據時增加一個bias，我就能夠更靈活的Fit數據。
+
+![](limitation of a Neuron.png)
+
+#### 接下來我想討論的是一個Neuron的侷限，首先要統整一個Neuron的運作方式，一開始Neuron輸入一個Input vector，接著這個Input vector會與weight vector做inner product，而這個inner product會作為activation function的input得到output，然後activation function的output會透過threshold來判斷Input vector是不是屬於某個類別，那這個threshold會受到activation function的值域影響，所以說一個Neuron負責的工作是判斷一個binary classification problem。
+
+![](multiple neuron2.png)
+
+#### 那如果我的問題不是一個binary classification，而是一個multi-class classification的problem，例如說如果是一個手寫辨識的問題，我要判斷Input的圖片是屬於0~9中哪一個數字，那我就需要10個Neuron來判斷，每個Neuron負責一個數字的辨識，所以說第一個Neuron判斷這張圖片是不是1，第二個Neuron判斷是不是2，以此類推。
+
+#### 那麼接下來，我想要討論的是一層Layer的Limitation，假設我今天要解決的是一個binary classification的problem，當我輸入x1,x2之後，模型能夠幫我判斷出是紅點還是藍點，那紅點藍點的關係可以表示成這個data.frame，$x_1$與$x_2$都是0或都是1時，Output是Yes藍點，，反之就是No紅點，那現在一層layer中只有一個Neuron，其實這就只是一個線性組合而已，那麼這個Neuron最後的輸出會透過一個threshold來判斷Input vector $x_1,x_2$是Yes還是No，可是如果是這種情形你會發現你找不到一個weight讓output a同時大於某一個threshold為Yes，同時小於某一個threshold為No。
+
+![](limitation of single layer.png)
+
+$$
+\left\{\begin{matrix}
+ Yes& a\geq threshold & \\ 
+ No& a< threshold & 
+\end{matrix}\right.
+$$
+
+#### 而這個問題可以邏輯真值表中的若且唯若來說明，我可以把這個data.frame解釋成若x1則x2，且，若x2則x1，若非x1則非x2，且，若非x2則非x1。
+
+![](ifandonlyif.png)
+
+#### 那還能用另外一種方法來解釋，叫做XNOR，當input是00時經過NOT gate會變成11,再經過and gate會變成1，然後下面的and gate會得到1，接著最後的or gate會得到1。
+
+![](xnor gate2.png)
+
+#### 那要實現xnor這個做法只需要再多一層layer就好了，第一層是input layer，而layer1的第一個neuron負責做not gate+and gate，第二個neuron負責做and gate，最後output layer會接受上一層layer的兩個output，然後接收到兩個output之後做到or gate的作用。
+
+![](xnor gate neuron network2.png)
+
+#### 那接下來上面這張圖是第一個neuron的output，那x軸y軸是分別是x1x2 input，而經過activation function之後得到等高線上面的數值，而下面那張圖也是一樣，經過activation function之後得到的數值，那這兩個不同在於weighted的設置不一樣，不同的weight就有不同的output，而得到這兩個neuron所構成的a1a2 vector之後就能當作下一層layer的Input。
+
+![](a1a2output.png)
+
+#### 而最後一層neuron就可以把a1a2 vector成功的分開了。
+
+![](aoutput.png)
+
+
+$\sigma(w_1x_1)$
+
+ 
+
+

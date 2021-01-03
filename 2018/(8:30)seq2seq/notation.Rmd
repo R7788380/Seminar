@@ -1,0 +1,9 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+
+## $\text{length}(\text{Source}\;\text{sequence})=n$
+
+## $\text{length}(\text{Target}\;\text{sequence})\le n$

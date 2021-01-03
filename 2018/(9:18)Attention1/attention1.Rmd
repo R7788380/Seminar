@@ -1,0 +1,168 @@
+---
+title: "attention1"
+output: html_document
+---
+
+$$
+h_1=
+\left[
+\begin{matrix}
+  \vec{h_1}\\
+  \overleftarrow{h_1}
+\end{matrix}
+\right]
+$$
+
+$$
+h_2=
+\left[
+\begin{matrix}
+  \vec{h_2}\\
+  \overleftarrow{h_2}
+\end{matrix}
+\right]
+$$
+
+$$
+h_3=
+\left[
+\begin{matrix}
+  \vec{h_3}\\
+  \overleftarrow{h_3}
+\end{matrix}
+\right]
+$$
+
+$$
+h_T=
+\left[
+\begin{matrix}
+  \vec{h_T}\\
+  \overleftarrow{h_T}
+\end{matrix}
+\right]
+$$
+
+$\vec{h_i}, \overleftarrow{h_i} \in \mathbb{R}^{\mathrm{n\times Kx}}$
+
+$h_i \in \mathbb{R}^{\mathrm{2n\times Kx}}$
+
+$\sigma$
+
+$\bar{E}x_i$
+
+$\cdots$
+
+$e_{t,1}$
+
+$e_{t,2}$
+
+$e_{t,3}$
+
+$e_{t,\mathrm{T}}$
+
+$v_a\in \mathbb{R}^{n'}$
+
+$W_a\in \mathbb{R}^{n'\times n}$
+
+$U_a\in \mathbb{R}^{n'\times 2n}$
+
+$a_{t,1}$
+
+$a_{t,2}$
+
+$a_{t,3}$
+
+$a_{t,T}$
+
+$\circ$
+
+$\bullet$
+
+$\mathrm{n}：\mathrm{Number\;of\;hidden\;units}$
+
+$\mathrm{Kx}：\mathrm{Vocabulary\;sizes\;of\;source\;language}$
+
+$y_1$
+
+$y_2$
+
+$y_{t-1}$
+
+$y_{t-2}$
+
+$y_{t}$
+
+$s_t=\tanh(Uy_{t-1}+Ws_{t-1}+b)$
+
+$y_t=\mathrm{sigmoid}(Vs_t)$
+
+$c_t$
+
+$n'：\mathrm{Number\;of\;Alignment\;hidden\;size}$
+
+$s_0=\tanh(W_s\overleftarrow{h_1})$
+
+$W_s\in \mathbb{R}^{n\times n}$
+
+$\mathrm{BLEU=BP\times exp(\sum_{n=1}^{N}W_nlogP_n)}$
+
+$$
+\mathrm{BP(Brevity\;Penalty)}=
+\begin{equation}
+\left\{
+\begin{array}{}
+\begin{aligned}
+&1 &, \mathrm{if}\;l_c>l_s \\
+&\exp(1-\frac{l_s}{l_c}) &, \mathrm{if}\; l_c\leqslant l_s
+\end{aligned}
+\end{array}
+\right.
+\end{equation}
+$$
+
+$l_c：\mathrm{Sequence\;length\;of\;machine\;translation}$
+
+$l_s：\mathrm{Sequence\;length\;of\;reference\;translation}$
+
+$\mathrm{\exp(\sum_{n=1}^NWnlogP_n)}$
+
+$\mathrm{Wn=\frac{1}{N},N=max\;n\;of\;n-gram}$
+
+$l_c=7$
+
+$l_s=8$
+
+$\mathrm{P_n}$
+
+$\mathrm{P_1(1-gram)}：\frac{6}{7}$
+
+$\mathrm{P_2(2-gram)}：\frac{2}{3}$
+
+$\mathrm{P_3(3-gram)}：\frac{2}{5}$
+
+$\mathrm{P_4(4-gram)}：\frac{1}{4}$
+
+$\mathrm{\sum_{n=1}^4W_nlogP_n}=\frac{1}{4}(\log\frac{6}{7}+\log\frac{2}{3}+\log\frac{2}{5}+\log\frac{1}{4})\thickapprox-0.7156$
+
+$\therefore\exp(\mathrm{\sum_{n=1}^4W_nlogP_n=exp^{-0.7156}\thickapprox0.4889}$
+
+$\because l_c < l_s\therefore \mathrm{BP=exp(1-\frac{8}{7})}\thickapprox0.8669$
+
+$\therefore \mathrm{BLEU=0.8669\times0.4889}=0.4238$
+
+$\alpha_{ij}$
+
+$\{x_1,x_2,...,x_{\mathrm{Tx-1}},x_{\mathrm{Tx}}\}$
+
+$\{x_{\mathrm{Tx}},x_{\mathrm{Tx-1}},...,x_2,x_1\}$
+
+
+
+
+
+
+
+
+
+

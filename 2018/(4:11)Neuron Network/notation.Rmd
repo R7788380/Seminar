@@ -1,0 +1,169 @@
+---
+title: "notation"
+author: "kang wen wei"
+date: "2018/4/6"
+output: html_document
+---
+
+## $vector\;\mathbf{x}$
+
+
+## $vector\;\mathbf{x}_{t-1}$
+
+## $vector\;\mathbf{x}_t$
+
+## $W$
+
+## $output\;y$
+
+## $input\;x$
+
+## $w_1$
+
+## $z_1$
+
+## $a_1$
+
+## $w_2$
+
+## $z_2$
+
+## $a_2$
+
+## $\sigma$
+
+### $w_1\rightarrow z_1\rightarrow a_1\rightarrow z_2\rightarrow a_2\rightarrow \bigtriangleup{C}$
+
+$$
+\begin{align}
+\frac{\partial{C}}{\partial{w_1}}
+&=
+\frac{\partial{C}}{\partial{a_2}}\frac{\partial{a_2}}{\partial{z_2}}\frac{\partial{z_2}}{\partial{a_1}}\frac{\partial{a_1}}{\partial{z_1}}\frac{\partial{z_1}}{\partial{w_1}} \\
+&=
+\frac{\partial{C}}{\partial{y}}\sigma'(z_2)w_2\sigma'(z_1)x
+\end{align}
+$$
+
+## $\mathbf{0}$
+
+## $\mathbf{1}$
+
+## $\mathbf{2}$
+
+## $\mathbf{t}$
+
+## $\cdots$
+
+## $The\;Gradient\;of\;w_1、w_2:\frac{\partial{C}}{\partial{w_1}}、\frac{\partial{C}}{\partial{w_2}}$
+
+## $w_2\rightarrow z_2\rightarrow a_2\rightarrow \bigtriangleup{C}$
+
+$$
+\begin{align}
+\frac{\partial{C}}{\partial{w_2}}
+&=
+\frac{\partial{C}}{\partial{a_2}}\frac{\partial{a_2}}{\partial{z_2}}\frac{\partial{z_2}}{\partial{w_2}} \\
+&=
+\frac{\partial{C}}{\partial{y}}\sigma'(z_2)a_1
+\end{align}
+$$
+
+## $Forward\rightarrow Prediction \rightarrow Loss$
+
+## $Backpropagation$
+
+## $\frac{\partial{C}}{\partial{w_2}}=\frac{\partial{C}}{\partial{y}}\sigma'(z_2)a_1$
+
+## $\frac{\partial{C}}{\partial{w_1}}=\frac{\partial{C}}{\partial{y}}\sigma'(z_2)w_2\sigma'(z_1)x$
+
+## $Small$
+
+## $More\;and\;more\;small...$
+
+## $S_1：'已經'\;'晚上'\;'我'\;'想'\;'吃飯'$
+
+## $S_2：'已經'\;'中午'\;'我'\;'想'\;'吃飯'$
+
+## $午餐$
+
+## $晚餐$
+
+## $y_1$
+
+## $y_2$
+
+## $U$
+
+## $V$
+
+## $s_t$
+
+$$
+\begin{align}
+h_t&=g(Vs_t) \\
+s_t&=f(Ux_t+Ws_{t-1})
+\end{align}
+$$
+
+## $S_1：'已經'\;'晚上'\;......'我'\;'想'\;'吃飯'$
+
+## $S_2：'已經'\;'中午'\;......'我'\;'想'\;'吃飯'$
+
+$$
+\begin{align}
+h_t
+&=g(Vs_t)=Vg(s_t) \\
+&=Vg(f(Ux_t+Ws_{t-1})) \\
+&=Vg(f(Ux_t+Wf(Ux_{t-1}+Ws_{t-2}))) \\
+&=Vg(f(Ux_t+Wf(Ux_{t-1}+Wf(Ux_{t-2}+...))))
+\end{align}
+$$
+
+## $S(x)=\frac{1}{1+e^{-x}}$
+
+## $S'(x)=\frac{1}{1+e^{-x}}(1-\frac{1}{1+e^{-x}})$
+
+## $If\;activation\;is\;linear:y=x$
+
+## $w=0.99,\;w^{999}\;\approx0$
+
+## $w=1.01,\;w^{999}\;\approx20000$
+
+## $h_t=g(Vs_t)$
+
+## $s_t=f(Ux_t+Ws_{t-1})$
+
+## $input\;x_0=1,x_1=1,...,x_{t-1}=1,x_t=1$
+
+$$
+[h_{t-1},x_t]=
+\left[
+\begin{matrix}
+    h^1_1 & x^1_1 \\
+    h^1_2 & x^1_2 \\
+    \vdots & \vdots
+\end{matrix}
+\right]
+$$
+
+## $0<f_t<1$
+
+## $f_t=\sigma(W_f\cdot[h_{t-1},x_t]+b_f)$
+
+## $\sigma\rightarrow$
+
+## $i_t=\sigma(W_i\cdot[h_{t-1},x_t]+b_i)$
+
+## $\widetilde{C}_t=\mathrm{tanh}(W_C\cdot[h_{t-1},x_t]+b_C)$
+
+## $0<i_t<1$
+
+## $C_t=f_t\ast C_{t-1}+i_t\ast\widetilde{C}_t$
+
+## $o_t=\sigma(W_o\cdot[h_{t-1},x_t]+b_o)$
+
+## $h_t=o_t\ast\mathrm{tanh}(C_t)$
+
+## $0<o_t<1$
+
+

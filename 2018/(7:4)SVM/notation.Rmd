@@ -1,0 +1,153 @@
+---
+title: "notation"
+author: "kang wen wei"
+date: "2018/6/29"
+output: html_document
+---
+
+### $y_i=\vec{w}\vec{\mu}+b$
+
+### $\vec{w}為平面參數，\vec{\mu}為\vec{x}的向量$
+
+$$
+\begin{equation}
+\begin{aligned}
+&\Rightarrow
+\left\{
+\begin{array}{r@{\;=\;}l}
+&\vec{w}\bullet\vec{x_+}+b\geq1\\
+&\vec{w}\bullet\vec{x_−}+b\leq-1
+\end{array}
+\right.,
+\mbox{such that }y_i=
+\left\{
+\begin{array}{r@{\;=\;}l}
++1 & ,\mbox{for + examples}\\
+-1 & ,\mbox{for − examples}
+\end{array}
+\right.\\
+&\Rightarrow\left\{
+\begin{array}{r@{\;=\;}l}
+y_i(\vec{w}\vec{x_i}+b)\geq1\\
+y_i(\vec{w}\vec{x_i}+b)\geq1
+\end{array}
+\right.
+\Rightarrow y_i(\vec{w}\vec{x_i}+b)-1\geq0\\
+&\Rightarrow y_i(\vec{w}\vec{x_i}+b)-1=0
+\end{aligned}
+\end{equation}
+$$
+
+### $\vec{u}=(3,4)$
+
+### $\frac{\vec{u}}{||\vec{u}||}=(\frac{3}{5},\frac{4}{5})$
+ 
+### $x_1=(4,2)$
+
+### $x_2=(8,4)$
+
+### $(x_2-x_1)\bullet\frac{\vec{u}}{||\vec{u}||}=(4,2)\bullet(\frac{3}{5},\frac{4}{5})=4$
+
+### $x_+$
+
+### $x_-$
+
+### $\vec{w}$
+
+$$
+\begin{align}
+\mbox{width}&=(\vec{x_+}-\vec{x_-})\bullet\frac{\vec{w}}{||\vec{w}||}\\
+&=\frac{\vec{x_+}\vec{w}-\vec{x-}\vec{w}}{||\vec{w}||}\\
+&=\frac{(1-b)-(-1-b)}{||\vec{w}||}\\
+&=\frac{2}{||\vec{w}||}
+\end{align}
+$$
+
+### $Maximum\;\frac{2}{||\vec{w}||}$
+
+### $y_i(\vec{w}\vec{x_i}+b)-1=0$
+
+### $Condition:$
+
+### $\Rightarrow$
+
+$$
+Max\frac{2}{||\vec{w}||}\Rightarrow
+Max\frac{1}{||\vec{w}||}\Rightarrow
+Min||\vec{w}||\Rightarrow
+Min\frac{1}{2}||\vec{w}||^2
+$$
+
+### $Min\;\frac{1}{2}||\vec{w}||^2$
+
+### $y=x^2 \Rightarrow \frac{dy}{dx}=2x=0$
+
+### $x=0 \Rightarrow y=0$
+
+### $O:f(x,y)$
+
+### $C:g(x,y)$
+
+$$
+L(x,y,\lambda) = f(x,y)-\lambda g(x,y)\\
+\begin{equation}
+\begin{aligned}
+&\left\{
+\begin{array}{r@{\;=\;}l}
+&\frac{\partial{f}}{\partial{x}}=\lambda\frac{\partial{g}}{\partial{x}}\\
+&\frac{\partial{f}}{\partial{y}}=\lambda\frac{\partial{g}}{\partial{y}}\\
+&g=0
+\end{array}
+\right.\;\Rightarrow
+x,y,\lambda
+\end{aligned}
+\end{equation}
+$$
+
+$$
+\begin{align}
+&\sum\lambda_i-\frac{1}{2}\sum_i\sum_j\lambda_i\lambda_jy_iy_j\vec{x_i}\vec{x_j}\;,\lambda_i\geq0\\
+\Rightarrow&\sum\lambda_i-\frac{1}{2}\sum_i\sum_j\lambda_i\lambda_jy_iy_jK(\vec{x_i},\vec{x_j})\;,\lambda_i\geq0
+\end{align}
+$$
+
+### $Linear:K(x_i,x_j)=x_i^Tx_j$
+
+### $Polynomial:K(x_i,x_j)=(\gamma x_i^Tx_j + c)^d , d > 1$
+
+### $Radial\;basis\;function:K(x_i,x_j)=exp(-\gamma ||x_i-x_j||^2), \gamma > 0$
+
+### $K(x_i,x_j) = exp(-\frac{||x_i-x_j||^2}{2\sigma^2})$
+
+### $\phi^T(x_i) \bullet \phi(x_j)$ 
+
+### $\because ||x_i-x_j||^2=x_i^Tx_i+x_j^Tx_j-2x_i^Tx_j$
+
+### $\therefore K(x_i,x_j)=exp(-\frac{x_i^Tx_i}{2\sigma^2})\bullet exp(-\frac{x_j^Tx_j}{2\sigma^2})\bullet exp(\frac{x_i^Tx_j}{\sigma^2})$
+
+### $e^x =1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...+\frac{x^n}{n!}=\sum_{n=0}^{\infty}\frac{x^n}{n!}$
+
+$$
+\begin{align}
+exp(\frac{x_i^Tx_j}{\sigma^2})
+&= \sum_{n=0}^{\infty}\frac{1}{n!}\bullet \frac{(x_i^Tx_j)^n}{\sigma^{2n}}\\
+&= \sum_{n=0}^{\infty}\frac{1}{\sqrt{n!}}\bullet \frac{(x_i^T)^n}{\sigma^n}\bullet \frac{1}{\sqrt{n!}}\bullet \frac{(x_j^T)^n}{\sigma^n} \\
+&= \varphi^T(x_i)\bullet \varphi(x_j)
+\end{align}
+$$
+
+$$
+\begin{align}
+K(x_i,x_j)&=exp(-\frac{x_i^Tx_i}{2\sigma^2})\bullet exp(-\frac{x_j^Tx_j}{2\sigma^2})\bullet exp(\frac{x_i^Tx_j}{\sigma^2})\\
+&= exp(-\frac{x_i^Tx_i}{2\sigma^2})\bullet exp(\frac{x_i^Tx_j}{\sigma^2})\bullet exp(-\frac{x_j^Tx_j}{2\sigma^2})\\
+&= exp(-\frac{x_i^Tx_i}{2\sigma^2})\bullet \varphi^T(x_i)\bullet \varphi(x_j)\bullet exp(-\frac{x_j^Tx_j}{2\sigma^2})\\
+&=\phi^T(x_i)\bullet \phi(x_j)\\
+其中&: \phi^T(x_i)=exp(-\frac{x_i^Tx_i}{2\sigma^2})\bullet \varphi^T(x_i)\\
+&\varphi^T(x)=\sum_{n=0}^{\infty}\frac{1}{\sqrt{n!}}\bullet \frac{(x^T)^n}{\sigma^n}
+\end{align}
+$$
+
+
+
+
+
